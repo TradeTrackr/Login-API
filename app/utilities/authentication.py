@@ -10,8 +10,6 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 class Authentication(object):
     def create_access_token(data: dict):
-
-
         to_encode = data.copy()
         to_encode.update({"exp": jwt.datetime.utcnow() + jwt.timedelta(minutes=int(config.ACCESS_TOKEN_EXPIRE_MINUTES))})
         encoded_jwt = jwt.encode(to_encode, config.SECRET_KEY, algorithm=config.ALGORITHM)
