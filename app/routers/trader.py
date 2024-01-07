@@ -41,42 +41,41 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
         "token_type": "bearer"
     }
 
+# # trader token refresh
+# @trader_route.post("/token/refresh", status_code=200)
+# async def token_refresh(data: RefreshToken, db: AsyncSession = Depends(get_db)) -> dict:
 
-# trader token refresh
-@trader_route.post("/token/refresh", status_code=200)
-async def token_refresh(data: RefreshToken, db: AsyncSession = Depends(get_db)) -> dict:
+#     id = Authentication.validate_refresh_token(data.refresh_token)
 
-    id = Authentication.validate_refresh_token(data.refresh_token)
+#     trader = await get_trader_by_id(db, id)
+#     if trader is None:
+#         raise HTTPException(status_code=404, detail="Trader not found")
 
-    trader = await get_trader_by_id(db, id)
-    if trader is None:
-        raise HTTPException(status_code=404, detail="Trader not found")
+#     access_token = Authentication.create_access_token(data={"sub": str(trader.id)})
+#     refresh_token = Authentication.create_refresh_token(data={"sub": str(trader.id)})
+#     return {
+#         "access_token": access_token,
+#         "refresh_token": refresh_token,
+#         "token_type": "bearer"
+#     }
 
-    access_token = Authentication.create_access_token(data={"sub": str(trader.id)})
-    refresh_token = Authentication.create_refresh_token(data={"sub": str(trader.id)})
-    return {
-        "access_token": access_token,
-        "refresh_token": refresh_token,
-        "token_type": "bearer"
-    }
+# # trader token validate
+# @trader_route.post("/token/validate", status_code=200)
+# async def token_validate(token: str, db: AsyncSession = Depends(get_db)) -> dict:
 
-# trader token validate
-@trader_route.post("/token/validate", status_code=200)
-async def token_validate(token: str, db: AsyncSession = Depends(get_db)) -> dict:
+#     id = Authentication.validate_token(token)
 
-    id = Authentication.validate_token(token)
+#     trader = await get_trader_by_id(db, id)
+#     if trader is None:
+#         raise HTTPException(status_code=404, detail="Trader not found")
 
-    trader = await get_trader_by_id(db, id)
-    if trader is None:
-        raise HTTPException(status_code=404, detail="Trader not found")
-
-    access_token = Authentication.create_access_token(data={"sub": str(trader.id)})
-    refresh_token = Authentication.create_refresh_token(data={"sub": str(trader.id)})
-    return {
-        "access_token": access_token,
-        "refresh_token": refresh_token,
-        "token_type": "bearer"
-    }
+#     access_token = Authentication.create_access_token(data={"sub": str(trader.id)})
+#     refresh_token = Authentication.create_refresh_token(data={"sub": str(trader.id)})
+#     return {
+#         "access_token": access_token,
+#         "refresh_token": refresh_token,
+#         "token_type": "bearer"
+#     }
 
 
 # trader logout

@@ -13,7 +13,7 @@ user_route = APIRouter()
 
 #     if AccountAPI().get_user_email(email):
 #         # Generate a secure token
-#         token = jwt.encode({"email": email, "exp": datetime.datetime.utcnow() + datetime.timedelta(minutes=15)}, config.SECRET_KEY, algorithm=config.ALGORITHM)
+#         token = jwt.encode({"email": email, "exp": datetime.datetime.utcnow() + datetime.timedelta(minutes=15)}, config.JWT_SECRET_KEY, algorithm=config.ALGORITHM)
 
 #         # add logic to get the company url
 #         # Create a magic link containing the token
@@ -28,7 +28,7 @@ user_route = APIRouter()
 # async def validate_magic_link(token: str):
 #     try:
 #         # Decode and validate token
-#         payload = jwt.decode(token, config.SECRET_KEY, algorithms=[config.ALGORITHM])
+#         payload = jwt.decode(token, config.JWT_SECRET_KEY, algorithms=[config.ALGORITHM])
 #         email = payload.get("email")
         
 #         # Here, implement logic to find the user by email and create a user session or a new token
