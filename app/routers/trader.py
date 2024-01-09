@@ -36,6 +36,7 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
     access_token = Authentication.create_access_token(data={"sub": str(trader.id)})
     refresh_token = Authentication.create_refresh_token(data={"sub": str(trader.id)})
     return {
+        "id": str(trader.id),
         "access_token": access_token,
         "refresh_token": refresh_token,
         "token_type": "bearer"
