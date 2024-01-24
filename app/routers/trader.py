@@ -4,11 +4,11 @@ from app.utilities.db import get_db
 from app.utilities.crud import get_trader_by_id, authenticate_trader, get_trader_by_email, new_trader
 from fastapi.security import OAuth2PasswordRequestForm
 from app.utilities.authentication import Authentication
-from app.validation_models import TraderRegistration, RefreshToken
+from app.validation_models import TraderRegistration
 
 
 trader_route = APIRouter()
-TraderRegistration
+
 # trader register
 @trader_route.post("/register")
 async def register(user: TraderRegistration, db: AsyncSession = Depends(get_db)) -> dict:
