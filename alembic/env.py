@@ -9,6 +9,7 @@ from app.models import Base
 # access to the values within the .ini file in use.
 config = context.config
 import os
+import urllib.parse
 
 
 SQLALCHEMY_USER = os.environ['SQLALCHEMY_USER']
